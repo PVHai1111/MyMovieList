@@ -16,4 +16,8 @@ class Member extends Model
         'role',
         'thumb',
     ];
+
+    public function movies(){
+        return $this->belongsToMany(Movie::class, 'movie_members','member_id', 'movie_id');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserMovieController;
 use App\Http\Controllers\User\SearchMovieController;
 use App\Http\Controllers\User\UserBlogController;
+use App\Http\Controllers\User\UserMemberController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,10 @@ Route::get('/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/login/submit', [UserController::class, 'login_handle'])->name('user.login.submit');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
+});
+
+Route::prefix('member')->group(function () {
+    route::get('{id}',[UserMemberController::class, 'show'])->name('user.member.show');
 });
 
 Route::prefix('movie')->group(function () {

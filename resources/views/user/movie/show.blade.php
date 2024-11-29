@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="{{ route('home.index') }}"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
+                        <a href="">Categories</a>
                         <span>{{ $movie->name }}</span>
                     </div>
                 </div>
@@ -59,7 +59,8 @@
                                         <ul>
                                             <li><span>Director:</span>
                                                 @foreach ($movie->getDirectors() as $director)
-                                                    <a href="">{{ $director->name }}</a>
+                                                    <a
+                                                        href="{{ route('user.member.show', $director->id) }}">{{ $director->name }}</a>
                                                     <span class="dot">, </span>
                                                 @endforeach
                                             </li>
@@ -67,7 +68,8 @@
                                             <li><span>Duration:</span> {{ $movie->duration }} min</li>
                                             <li><span>Actors:</span>
                                                 @foreach ($movie->getActors() as $actor)
-                                                    <a href="">{{ $actor->name }}</a>
+                                                    <a
+                                                        href="{{ route('user.member.show', $actor->id) }}">{{ $actor->name }}</a>
                                                     <span class="dot">, </span>
                                                 @endforeach
                                             </li>
