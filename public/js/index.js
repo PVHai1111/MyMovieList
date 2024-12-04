@@ -195,4 +195,27 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#publish').change(function () {
+        var status = $(this).prop('checked') ? 1 : 0;
+
+        $.ajax({
+            url: '/MyMovieList/user/publish/status/update',
+            method: 'GET',
+            data: {
+                status: status
+            },
+            success: function (response) {
+                console.log(response)
+                if (response.error) {
+                    $('.toast').addClass('show');
+                    $('.toast-body').text(response.error);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Lỗi kết nối tới server!');
+            }
+        });
+    });
 })

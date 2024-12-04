@@ -4,9 +4,9 @@
         <form action="{{ route('user.update') }}" class="row" method="POST" enctype="multipart/form-data">
             @csrf
             <div id="preview-container" style="" class="my-3 col-12 d-flex justify-content-center align-items-center">
-                <div class="img-prev rounded-circle img-fluid img-thumbnail" style="flex-basis: 150px; max-width:150px; height:150px; overflow:hidden">
-                    <img id="image-preview" class=""
-                        style="width:100%; height:auto"
+                <div class="img-prev rounded-circle img-fluid img-thumbnail"
+                    style="flex-basis: 150px; max-width:150px; height:150px; overflow:hidden">
+                    <img id="image-preview" class="" style="width:100%; height:auto"
                         src="{{ $user->thumb ? asset($user->thumb) : asset('img/anime/review-1.jpg') }}" alt="Image Preview"
                         style="">
                 </div>
@@ -44,9 +44,11 @@
                                     <h4>Your Favorite Movies</h4>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                            <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-end">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="publish"
+                                        @if (Auth::check() && Auth::user()->favorite_status) checked @endif>
+                                    <label class="custom-control-label text-light" for="publish">Status</label>
                                 </div>
                             </div>
                         </div>

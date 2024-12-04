@@ -70,4 +70,16 @@ class UserController extends Controller
         $this->userService->updateCurrentUser($validate);
         return redirect()->route('user.edit');
     }
+
+    function publish_status_update(Request $request)
+    {
+        $status = $request->get('status');
+        $list_status = ['0', '1'];
+        if (in_array($status, $list_status)) {
+            Auth::user()->favorite_status = $status;
+            Auth::user()->save();
+            return response()->json(['success' => 'success']);
+        }
+        return response()->json(['error' => 'An error occurred. Reload the page and try again.']);
+    }
 }

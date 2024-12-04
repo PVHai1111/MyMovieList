@@ -39,6 +39,7 @@ Route::prefix('member')->group(function () {
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('edit',[UserController::class, 'edit'])->name('user.edit');
     Route::post('update',[UserController::class, 'update'])->name('user.update');
+    Route::get('publish/status/update',[UserController::class, 'publish_status_update'])->name('user.publish_status_update');
 });
 
 Route::prefix('movie')->group(function () {
