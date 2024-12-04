@@ -11,7 +11,8 @@
                             <a href="#" class="facebook"><i class="fa fa-facebook-square"></i> Facebook</a>
                             <a href="#" class="pinterest"><i class="fa fa-pinterest"></i> Pinterest</a>
                             <a href="#" class="linkedin"><i class="fa fa-linkedin-square"></i> Linkedin</a>
-                            <a href="#" class="twitter"><i class="fa fa-twitter-square"></i> Twitter</a>
+                            <a href="#" class="report" data-id="{{ $blog->id }}" data-type="App\Models\Blog"><i
+                                    class="fa fa-flag"></i> Report</a>
                         </div>
                     </div>
                 </div>

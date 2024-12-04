@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'reportable_id', 'reportable_type'];
+    protected $fillable = ['reportable_id', 'reportable_type', 'reason'];
 
     public function reportable(): MorphTo
     {

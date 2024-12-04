@@ -148,4 +148,51 @@ $(document).ready(function () {
             }
         }
     });
+
+    $('.report').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        var type = $(this).attr('data-type');
+        Swal.fire({
+            title: 'Report this content',
+            html: `
+                <form id="form-data">
+                    <textarea class="swal2-textarea" id="report-input" placeholder="Enter report content"></textarea>
+                </form>
+            `,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Send',
+            cancelButtonText: 'Cancel',
+            preConfirm: function () {
+                var content = $('#report-input').val();
+                return { content: content };
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var content = result.value.content;
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    }
+                });
+                $.ajax({
+                    url: '/MyMovieList/report/handle',
+                    method: 'POST',
+                    data: {
+                        reason: content,
+                        reportable_id: id,
+                        reportable_type: type
+                    },
+                    success: function (response) {
+                        Swal.fire('Success', 'Your report has been submitted.', 'success');
+                    },
+                    error: function () {
+                        Swal.fire('Error!', 'An error occurred, please try again.', 'error');
+                    }
+                });
+            }
+        });
+    });
 })

@@ -10,7 +10,11 @@
                 <span>{{ $comment->created_at->format('d/m/Y') }}</span>
                 <h5>{{ $comment->user->name }}</h5>
                 <p>{{ $comment->body }}</p>
-                <a href="#" class="btn-report">Report</a>
+                @if (Auth::check())
+                    @if (Auth::user()->id != $comment->user->id)
+                        <a href="#" data-id="{{ $comment->id }}" data-type="App\Models\Comment" class="report">Report</a>
+                    @endif
+                @endif
                 <a href="#" class="btn-reply" data-comment="{{ $comment->id }}"
                     data-id="{{ Auth::check() ? Auth::user()->id : '' }}" data-blog="{{ $blog->id }}">Reply</a>
             </div>
@@ -26,7 +30,11 @@
                     <span>{{ $reply->created_at->format('d/m/Y') }}</span>
                     <h5>{{ $reply->user->name }}</h5>
                     <p>{{ $reply->body }}</p>
-                    <a href="#" class="btn-report">Report</a>
+                    @if (Auth::check())
+                        @if (Auth::user()->id != $comment->user->id)
+                            <a href="#" data-id="{{ $comment->id }}" data-type="App\Models\Comment" class="report">Report</a>
+                        @endif
+                    @endif
                 </div>
             </div>
         @endforeach

@@ -53,7 +53,8 @@ class UserController extends Controller
     function edit()
     {
         $user = Auth::user();
-        return view('user.user.edit', compact('user'));
+        $favorite_movies = Auth::user()->favorites;
+        return view('user.user.edit', compact('user', 'favorite_movies'));
     }
 
     function update(UpdateUserRequest $request)

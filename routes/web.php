@@ -9,6 +9,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserMovieController;
 use App\Http\Controllers\User\SearchMovieController;
 use App\Http\Controllers\User\UserBlogController;
+use App\Http\Controllers\User\UserReportController;
 use App\Http\Controllers\User\UserMemberController;
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::get('/register', [UserController::class, 'register'])->name('user.registe
 Route::post('/register/submit', [UserController::class, 'register_handle'])->name('user.register.submit');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login/submit', [UserController::class, 'login_handle'])->name('user.login.submit');
+Route::post('/report/handle', [UserReportController::class, 'handle'])->name('user.report.handle');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 });

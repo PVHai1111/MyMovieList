@@ -1485,8 +1485,8 @@ ol {
 	background: #0372b1;
 }
 
-.blog__details__title .blog__details__social a.twitter {
-	background: #39a1f2;
+.blog__details__title .blog__details__social a.report {
+	background: #d63031;
 }
 
 .blog__details__title .blog__details__social a i {
@@ -1531,6 +1531,23 @@ ol {
 	font-size: 17px;
 	line-height: 30px;
 	margin-bottom: 0;
+}
+
+.blog__details__item__text p span{
+	background: none !important;
+	color: #d0cbcb !important;
+}
+
+.blog__details__item__text p a{
+	background: none !important;
+	color: #d0cbcb !important;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.blog__details__item__text strong{
+	background: none !important;
+	color: #d0cbcb !important;
 }
 
 .blog__details__tags {
