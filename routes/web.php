@@ -24,7 +24,7 @@ use App\Http\Controllers\User\UserMemberController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/register', [UserController::class, 'register'])->name('user.register');
 Route::post('/register/submit', [UserController::class, 'register_handle'])->name('user.register.submit');
-Route::get('/login', [UserController::class, 'login'])->name('user.login');
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login/submit', [UserController::class, 'login_handle'])->name('user.login.submit');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
@@ -32,6 +32,11 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('member')->group(function () {
     route::get('{id}',[UserMemberController::class, 'show'])->name('user.member.show');
+});
+
+Route::prefix('user')->middleware('auth')->group(function () {
+    Route::get('edit',[UserController::class, 'edit'])->name('user.edit');
+    Route::post('update',[UserController::class, 'update'])->name('user.update');
 });
 
 Route::prefix('movie')->group(function () {

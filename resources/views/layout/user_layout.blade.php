@@ -51,22 +51,22 @@
                 </div>
             @endforeach
         </div>
-    @endif
+    @else
+        <div style="position: fixed; top: 30px; right: 15px; z-index:10000">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-danger">
+                    <strong class="mr-auto text-light">Error</strong>
+                    <button type="button" class="ml-2 mb-1 close text-light btn-close-toast" data-dismiss="toast"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
 
-    <div style="position: fixed; top: 30px; right: 15px; z-index:10000">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header bg-danger">
-                <strong class="mr-auto text-light">Error</strong>
-                <button type="button" class="ml-2 mb-1 close text-light btn-close-toast" data-dismiss="toast"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -86,17 +86,17 @@
                                 <li><a href="{{ route('home.index') }}">Homepage</a></li>
                                 <li><a href="#">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="{{ route('user.blog.add') }}">Add New Blog</a></li>
                                         @if (!Auth::check())
                                             <li><a href="{{ route('user.register') }}">Sign Up</a></li>
-                                            <li><a href="{{ route('user.login') }}">Login</a></li>
+                                            <li><a href="{{ route('login') }}">Login</a></li>
                                         @endif
                                         @auth
+                                            <li><a href="{{ route('user.blog.add') }}">Add New Blog</a></li>
                                             <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                         @endauth
                                     </ul>
                                 </li>
-                                <li><a href="{{route('user.blog.all')}}">Our Blog</a></li>
+                                <li><a href="{{ route('user.blog.all') }}">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
@@ -105,7 +105,11 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        @if (Auth::check())
+                            <a href="{{ route('user.edit') }}"><span class="icon_profile"></span></a>
+                        @else
+                            <a href="{{ route('login') }}"><span class="icon_profile"></span></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -133,7 +137,7 @@
                         <ul>
                             <li class="active"><a href="./index.html">Homepage</a></li>
                             <li><a href="./categories.html">Categories</a></li>
-                            <li><a href="{{route('user.blog.all')}}">Blog</a></li>
+                            <li><a href="{{ route('user.blog.all') }}">Blog</a></li>
                             <li><a href="#">Contacts</a></li>
                         </ul>
                     </div>

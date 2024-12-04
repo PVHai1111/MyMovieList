@@ -133,4 +133,19 @@ $(document).ready(function () {
             }
         });
     })
+
+    $('#image').on('change', function (event) {
+        var file = event.target.files[0];
+        if (file) {
+            if (file.type.startsWith('image/')) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#image-preview').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file!');
+            }
+        }
+    });
 })

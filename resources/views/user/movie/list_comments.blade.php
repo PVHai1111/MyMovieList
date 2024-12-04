@@ -5,7 +5,8 @@
     @foreach ($comments as $comment)
         <div class="anime__review__item">
             <div class="anime__review__item__pic">
-                <img src="{{ asset('img/anime/review-1.jpg') }}" alt="">
+                <img src="{{ $comment->user->thumb ? asset($comment->user->thumb) : asset('img/anime/review-1.jpg') }}"
+                    alt="">
             </div>
             <div class="anime__review__item__text">
                 <h6>{{ $comment->user->name }} -
