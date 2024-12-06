@@ -126,22 +126,24 @@
                             </ul>
                         </li>
                         <li class="nav-link">
-                            <a href="?view=list-user">
+                            <a href="{{ route('admin.user.show') }}">
                                 <div class="nav-link-icon d-inline-flex">
                                     <i class="far fa-folder"></i>
                                 </div>
                                 Users
                             </a>
-                            <i class="arrow fas fa-angle-right"></i>
-
-                            <ul class="sub-menu">
-                                <li><a href="?view=add-user">Thêm mới</a></li>
-                                <li><a href="?view=list-user">Danh sách</a></li>
-                            </ul>
+                        </li>
+                        <li class="nav-link">
+                            <a href="{{ route('admin.report.show') }}">
+                                <div class="nav-link-icon d-inline-flex">
+                                    <i class="far fa-folder"></i>
+                                </div>
+                                Reports
+                            </a>
                         </li>
                     @endif
                     <li class="nav-link">
-                        <a href="{{route('user.blog.show')}}">
+                        <a href="{{ route('user.blog.show') }}">
                             <div class="nav-link-icon d-inline-flex">
                                 <i class="far fa-folder"></i>
                             </div>
@@ -150,8 +152,8 @@
                         <i class="arrow fas fa-angle-right"></i>
 
                         <ul class="sub-menu">
-                            <li><a href="{{route('user.blog.add')}}">Thêm mới</a></li>
-                            <li><a href="{{route('user.blog.show')}}">Danh sách</a></li>
+                            <li><a href="{{ route('user.blog.add') }}">Thêm mới</a></li>
+                            <li><a href="{{ route('user.blog.show') }}">Danh sách</a></li>
                         </ul>
                     </li>
                 </ul>

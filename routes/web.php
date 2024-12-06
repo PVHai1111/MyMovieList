@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\CatController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserMovieController;
@@ -94,5 +95,14 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
         Route::get('/edit/{id}', [MovieController::class, 'edit'])->name('movie.edit');
         Route::post('/update/{id}', [MovieController::class, 'update'])->name('movie.update');
         Route::get('/delete/{id}', [MovieController::class, 'delete'])->name('movie.delete');
+    });
+    Route::prefix('user')->group(function(){
+        Route::get('/show',[AdminUserController::class, 'show'])->name('admin.user.show');
+        Route::get('/edit/{id}',[AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/update/{id}',[AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::get('/delete/{id}',[AdminUserController::class,'delete'])->name('admin.user.delete');
+    });
+    Route::prefix('report')->group(function(){
+        // Route::get('/show',[])
     });
 });
