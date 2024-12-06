@@ -38,6 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
     public function favorites()
     {
         return $this->belongsToMany(Movie::class, 'favorites', 'user_id', 'movie_id');

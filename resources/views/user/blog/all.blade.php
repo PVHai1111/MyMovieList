@@ -19,25 +19,40 @@
         <div class="container">
             <div class="row">
                 @if ($blogChunks->count() > 0)
-                    @foreach ($blogChunks as $blogs)
+                    @foreach ($blogChunks as $key => $blogs)
+                        @php
+                            $count += $key * 12;
+                        @endphp
                         <div class="col-lg-6">
                             <div class="row">
-                                @include('user.blog.big_blog',['blog' => $blogs[0]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[1]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[2]])
-                                @include('user.blog.big_blog',['blog' => $blogs[3]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[4]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[5]])
+                                @foreach (range(0, 5) as $i)
+                                    @php
+                                        $index = $count + $i;
+                                    @endphp
+
+                                    @if (isset($blogs[$index]))
+                                        @include(
+                                            $i == 0 || $i == 3 ? 'user.blog.big_blog' : 'user.blog.mini_blog',
+                                            ['blog' => $blogs[$index]]
+                                        )
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="row">
-                                @include('user.blog.mini_blog',['blog' => $blogs[6]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[7]])
-                                @include('user.blog.big_blog',['blog' => $blogs[8]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[9]])
-                                @include('user.blog.mini_blog',['blog' => $blogs[10]])
-                                @include('user.blog.big_blog',['blog' => $blogs[11]])
+                                @foreach (range(6, 11) as $i)
+                                    @php
+                                        $index = $count + $i;
+                                    @endphp
+
+                                    @if (isset($blogs[$index]))
+                                        @include(
+                                            $i == 8 || $i == 11 ? 'user.blog.big_blog' : 'user.blog.mini_blog',
+                                            ['blog' => $blogs[$index]]
+                                        )
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     @endforeach

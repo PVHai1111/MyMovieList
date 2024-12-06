@@ -25,7 +25,11 @@ class UserBlogController extends Controller
     function show()
     {
         $count = 1;
-        $blogs = Auth::user()->blogs()->paginate(10);
+        if(Auth::user()->isAdmin()){
+            $blogs = Blog::orderBy('created_at')->paginate(10);
+        }else{
+            $blogs = Auth::user()->blogs()->paginate(10);
+        }
         return view('admin.blogs.show', compact('blogs', 'count'));
     }
     function add()
@@ -78,7 +82,7 @@ class UserBlogController extends Controller
 
     function delete($id)
     {
-        if (Auth::user()->ownsBlog($id)) {
+        if (Auth::user()->ownsBlog($id) || Auth::user()->isAdmin()) {
             $blog = Blog::find($id);
             $blog->delete();
             return redirect()->route('user.blog.show');
@@ -90,7 +94,8 @@ class UserBlogController extends Controller
     function all()
     {
         $blogChunks = Blog::orderBy('created_at')->get()->chunk(12);
-        return view('user.blog.all', compact('blogChunks'));
+        $count = 0;
+        return view('user.blog.all', compact('blogChunks', 'count'));
     }
 
     function detail($id)
