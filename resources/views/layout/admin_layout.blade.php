@@ -141,6 +141,14 @@
                                 Reports
                             </a>
                         </li>
+                        <li class="nav-link">
+                            <a href="{{ route('admin.comment.show') }}">
+                                <div class="nav-link-icon d-inline-flex">
+                                    <i class="far fa-folder"></i>
+                                </div>
+                                Comments
+                            </a>
+                        </li>
                     @endif
                     <li class="nav-link">
                         <a href="{{ route('user.blog.show') }}">

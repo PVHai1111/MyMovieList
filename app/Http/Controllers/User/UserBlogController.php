@@ -54,7 +54,7 @@ class UserBlogController extends Controller
 
     function edit($id)
     {
-        if (Auth::user()->ownsBlog($id)) {
+        if (Auth::user()->ownsBlog($id) || Auth::user()->isAdmin()) {
             $blog = Blog::find($id);
             return view('admin.blogs.edit', compact('blog'));
         } else {
@@ -64,7 +64,7 @@ class UserBlogController extends Controller
 
     function update($id, StoreBlogRequest $request)
     {
-        if (Auth::user()->ownsBlog($id)) {
+        if (Auth::user()->ownsBlog($id) || Auth::user()->isAdmin()) {
             $validate = $request->validated();
             if ($request->hasFile('thumb')) {
                 $file = $request->file('thumb');

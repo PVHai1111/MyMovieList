@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\CatController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserMovieController;
 use App\Http\Controllers\User\SearchMovieController;
@@ -37,13 +39,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('member')->group(function () {
-    route::get('{id}',[UserMemberController::class, 'show'])->name('user.member.show');
+    route::get('{id}', [UserMemberController::class, 'show'])->name('user.member.show');
 });
 
 Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('edit',[UserController::class, 'edit'])->name('user.edit');
-    Route::post('update',[UserController::class, 'update'])->name('user.update');
-    Route::get('publish/status/update',[UserController::class, 'publish_status_update'])->name('user.publish_status_update');
+    Route::get('edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('update', [UserController::class, 'update'])->name('user.update');
+    Route::get('publish/status/update', [UserController::class, 'publish_status_update'])->name('user.publish_status_update');
 });
 
 Route::prefix('movie')->group(function () {
@@ -96,13 +98,19 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
         Route::post('/update/{id}', [MovieController::class, 'update'])->name('movie.update');
         Route::get('/delete/{id}', [MovieController::class, 'delete'])->name('movie.delete');
     });
-    Route::prefix('user')->group(function(){
-        Route::get('/show',[AdminUserController::class, 'show'])->name('admin.user.show');
-        Route::get('/edit/{id}',[AdminUserController::class, 'edit'])->name('admin.user.edit');
-        Route::post('/update/{id}',[AdminUserController::class, 'update'])->name('admin.user.update');
-        Route::get('/delete/{id}',[AdminUserController::class,'delete'])->name('admin.user.delete');
+    Route::prefix('user')->group(function () {
+        Route::get('/show', [AdminUserController::class, 'show'])->name('admin.user.show');
+        Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/update/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::get('/delete/{id}', [AdminUserController::class, 'delete'])->name('admin.user.delete');
     });
-    Route::prefix('report')->group(function(){
-        // Route::get('/show',[])
+    Route::prefix('report')->group(function () {
+        Route::get('/show', [ReportController::class, 'show'])->name('admin.report.show');
+        route::get('/delete/{id}', [ReportController::class, 'delete'])->name('admin.report.delete');
+    });
+    Route::prefix('comment')->group(function () {
+        Route::get('/show', [CommentController::class, 'show'])->name('admin.comment.show');
+        Route::get('/detail/{id}', [CommentController::class, 'detail'])->name('admin.comment.detail');
+        route::get('/delete/{id}', [CommentController::class, 'delete'])->name('admin.comment.delete');
     });
 });
