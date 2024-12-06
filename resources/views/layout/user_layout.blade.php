@@ -97,7 +97,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('user.blog.all') }}">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="{{route('people.show')}}">Other people</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -135,10 +135,10 @@
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="./categories.html">Categories</a></li>
+                            <li class="active"><a href="#">Homepage</a></li>
+                            <li><a href="#">Categories</a></li>
                             <li><a href="{{ route('user.blog.all') }}">Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="#">Other people's favorites</a></li>
                         </ul>
                     </div>
                 </div>

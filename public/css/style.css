@@ -2376,3 +2376,36 @@ ol {
 	}
 }
 
+.people-item img{
+	height: 100px;
+	width: 100px;
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
+
+.people-content{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-left: 15px;
+}
+
+.people-content span{
+	color: #ffffff;
+}
+
+.people-content a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 170px;
+	padding: 10px 0px;
+	border-radius: 10px;
+	background-color: #0372b1;
+	color: #052335;
+
+}
+
+.people-content a:hover{
+	color: #ffffff;
+}

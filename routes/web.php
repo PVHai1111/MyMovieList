@@ -11,6 +11,7 @@ use App\Http\Controllers\User\SearchMovieController;
 use App\Http\Controllers\User\UserBlogController;
 use App\Http\Controllers\User\UserReportController;
 use App\Http\Controllers\User\UserMemberController;
+use App\Http\Controllers\User\OrtherFavoriteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,8 @@ Route::post('/register/submit', [UserController::class, 'register_handle'])->nam
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login/submit', [UserController::class, 'login_handle'])->name('user.login.submit');
 Route::post('/report/handle', [UserReportController::class, 'handle'])->name('user.report.handle');
+Route::get('people/show', [OrtherFavoriteController::class, 'show'])->name('people.show');
+Route::get('people/{id}/favorites', [OrtherFavoriteController::class, 'favorites'])->name('people.favorites');
 Route::middleware('auth')->group(function () {
     Route::get('logout', [UserController::class, 'logout'])->name('user.logout');
 });
