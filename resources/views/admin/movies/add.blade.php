@@ -1,0 +1,81 @@
+@extends('layout.admin_layout')
+@section('content')
+    <div id="content" class="container-fluid">
+        <div class="card">
+            <div class="card-header font-weight-bold">
+                Add new movie
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('movie.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Description</label>
+                        <textarea class="form-control d-none text-editor" name="description" id="description" cols="30" rows="5">{{old('description')}}</textarea>
+                        <div id="editor" style="height: 300px;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Duration (minutes)</label>
+                        <input class="form-control" type="number" name="duration" id="duration" min="1" value="{{old('duration')}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Release year</label>
+                        <input class="form-control" type="number" name="release_year" id="release_year" min="1800"
+                            max ="{{ date('Y') }}" value="{{old('release_year')}}">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Categories</label>
+                        <select id="cat-select" class="slim-select" name="cat_ids[]" multiple>
+                            <option value="">-- Select Category --</option>
+                            @foreach ($cats as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Series</label>
+                        <select id="cat-select" class="slim-select" name="serie_id">
+                            <option value="">-- Select Serie --</option>
+                            @foreach ($series as $serie)
+                                <option value="{{ $serie->id }}">{{ $serie->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Movie members</label>
+                        <select id="member-select" class="slim-select" name="member_ids[]" multiple>
+                            <option value="">-- Select Member --</option>
+                            @foreach ($members as $member)
+                                <option value="{{ $member->id }}">{{ $member->name }} - {{ ucfirst($member->role) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Thumb</label>
+                        <input type="file" name="thumb" class="form-control-file" id="image"
+                            aria-describedby="inputGroupFileAddon01">
+                    </div>
+
+                    <div id="preview-container" style="height:auto; width: 300px;" class="my-3">
+                        <img id="image-preview" class="img-fluid img-thumbnail" src="" alt="Image Preview"
+                            style="display: none;">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add new</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
