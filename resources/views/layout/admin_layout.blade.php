@@ -104,7 +104,7 @@
                                 <div class="nav-link-icon d-inline-flex">
                                     <i class="far fa-folder"></i>
                                 </div>
-                                Movie members
+                                Movie member
                             </a>
                             <i class="arrow fas fa-angle-right"></i>
                             <ul class="sub-menu">
